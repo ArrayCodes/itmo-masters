@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maga"
+version = "0.1.0"
+description = "Maga Python project"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aray" }]
+dependencies = [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "python-telegram-bot>=20.0",
+    "pandas>=2.0.0",
+    "lxml>=4.9.0",
+    "aiohttp>=3.8.0",
+    "python-dotenv>=1.0.0"
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+exclude = ["build", "dist", ".venv"]
+
+[tool.ruff.lint]
+# E,F: pycodestyle/pyflakes; I: isort; UP: pyupgrade; B: bugbear; SIM: simplify; C4: comprehensions; PL*: pylint-ish
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "W", "PLC", "PLE", "PLR", "PLW"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "single"
+docstring-code-format = true
+skip-magic-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unreachable = true
+ignore_missing_imports = true
+mypy_path = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
